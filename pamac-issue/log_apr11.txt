@@ -1,0 +1,18 @@
+----------------issue: 
+jre17 and jdk17 in conflict, try to delete but cannot delete because "breaks dependency pacman<6.1 of libpamac-git", but when check pactree of libpamac-git it says requires pacman>=6.0. 
+
+when do full system upgrades (before this time) the requirement may have been updated, which reflects in the pactree, but some part of the program/set of packages does not get the memo? 
+
+when triggering the delete jre17 process, a dependency was not satisfied--my guess is that the deletion process requires pacman>=6.1. that's why the system immediately runs to install pacman 6.1. but then the troublesome dependency requirement "pacman<6.1" appear and terminates the installation process. when installation is terminated, deletion process of jre17 is also terminated. 
+
+trivia: in yay, the process is rolled back 3 times at most. in pacman -Syu, the process is not rolled back and the entire program halts immediately.
+
+----------------logs when running `yay` or `pacman -Syu` to do full system upgrade: 
+
+warning: removing 'jre17-openjdk' from target list because it conflicts with 'jdk17-openjdk'
+warning: removing 'jre17-openjdk-headless' from target list because it conflicts with 'jdk17-openjdk'
+:: jdk17-openjdk and jre17-openjdk are in conflict. Remove jre17-openjdk? [y/N] y      
+:: jdk17-openjdk and jre17-openjdk-headless are in conflict. Remove jre17-openjdk-headless? [y/N] y
+error: failed to prepare transaction (could not satisfy dependencies)
+:: installing pacman (6.1.0-3) breaks dependency 'pacman<6.1' required by libpamac-git
+ -> Failed to install layer, rolling up to next layer.error:error installing repo packages

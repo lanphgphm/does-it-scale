@@ -1,0 +1,14 @@
+solution to the problem: 
+
+------------pamac------------------
+pamac, a wrapper package manager for pacman and yay, was installed for some reason. libpamac-git, pamac, pamac-aur-git all requires pacman<6.1. pacman therefore cannot update because of this backwards compatibility. 
+
+i never used pamac, nor do i want to. objectively it sounds less catchy than pacman :) but mostly, i want to keep my arch lean, i dont mind some inconveniences when install and maintaining my packages. 
+
+therefore, removing pamac entirely from archlinux was the solution. 
+----------jre17 conflict jdk17---------
+when installing java on this machine, i specifically picked jdk because my intention was to CODE java, not execute java bytecodes alone. 
+
+intellij-idea-community was installed which requires jre17. removing this IDE resolves the problem. 
+
+i also use jdk21 and java 21 by default on this machine. java 8 and java 17 is also available. i want to clean off unused things, so next step is to check if any app requires these 2 versions, then removing them. 
